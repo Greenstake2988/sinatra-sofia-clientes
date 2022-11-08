@@ -1,0 +1,33 @@
+.abono {
+  color: green;
+  /* border: 3px solid black; */
+  text-align: center;
+  margin: 10px auto;
+}
+
+.compra {
+  color: red;
+  /* border:3px solid black; */
+  text-align: center;
+  margin: 10px auto;
+
+}
+
+.div-span {
+  text-align: center;
+  color:black; 
+  padding:20px;
+}
+
+.total {
+  text-align: center;
+  margin:auto; 
+  font-size: large;
+  /* border:3px solid black */
+}
+
+.total-span {
+  text-align: center;
+  color:black; 
+  padding:20px;
+}

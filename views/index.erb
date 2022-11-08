@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartera</title>
+
+</head>
+<body>
+  
+<h1> Clientes </h1>
+
+<%# Conexion a base de datos con los nombres de los clientes%>
+<% clientes = ["oscar", "daniel", "vazquez", "perez"]%>
+
+<% clientes.each do |n|%>
+  <p><a href= <%=n.to_s%>><%= n.capitalize %> </a></p>
+<% end %>
+</body>
+</html>

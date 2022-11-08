@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartera</title>
+  <link href="/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<h1> <%= nombre.capitalize%> </h1>
+
+<%# Conexion a base de datos por las deudas de los cleintes%>
+<% deudas = [10, 20, 30 ,100, -10000]%>
+
+<% deudas.each do |d|%>
+  <% if d > 0 %>
+    <div class="abono"><%=d%><span class="div-span">Fecha</span></div>
+  <% else %>
+    <div class="compra"><%=d%><span class="div-span">Fecha</span></div>
+  <% end %>
+<% end %>
+
+<hr>
+<p class="total"><%=deudas.sum%> <span class="total-span">TOTAL</span></p>
+
+</body>
+</html>
