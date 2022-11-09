@@ -9,15 +9,15 @@
 </head>
 <body>
   
+<%# Titulo%>
 <h1> Clientes </h1>
 
 <%# Ordenamos los nombres OJO cambiamos el objeto%>
 <% clientes.sort_by! {|hsh| hsh[:nombre] } %>
 
+<%# Mostramos todos los clientes%>
 <% clientes.each do |c| %>
-  <%# Se tuvo que modificar el nombre y meterle
-      en los espacios '%20' de otro modo la pagina
-      no recibe los espacios %>
+  <%# Agregando %20 en los  nombre con espacios%>
   <% nombre_con_espacios = c[:nombre].gsub(" ", "%20") %>
   <p><a href=/clientes/<%= nombre_con_espacios %>><%= c[:nombre].capitalize %></a></p>
 <% end %>
@@ -25,6 +25,7 @@
 <%# Linea%>
 <hr>
 
+<%# Boton para agregar un cliente nuevo%>
 <form method="post" action="/clientes">
       <label for="nombre">Nombre: </label>
       <input type="text" name="nombre">

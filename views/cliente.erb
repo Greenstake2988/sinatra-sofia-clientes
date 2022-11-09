@@ -12,16 +12,16 @@
 <%# Titulo %>
 <h1> <%= nombre.capitalize%> </h1>
 
+<%# Boton para borrar el cliente%>
 <form method="post" action="/clientes/<%= nombre %>"> 
     <input type="hidden" name="_method" value="delete">
     <button type="submit">Borrar Cliente</button>
 </form>
 
-
-
+<%# Los encabezados  Monto y Fecha%>
 <div class="abono" style="color:black; font-size:large"><strong>Monto</strong><span class="div-span"><strong>Fecha</strong></span></div>
 
-<%# iteramos la lista para desplegar los datos%>
+<%# Mostramos todas las transacciones%>
 <% transacciones.each do |t| %>
   <% if t[:monto] > 0 %>
     <div class="abono">
@@ -34,7 +34,7 @@
 <%# Linea%>
 <hr>
 
-<%# el total %>
+<%# TOTAL %>
 <p class="total"><%= transacciones.sum {|t| t[:monto]} %> <span class="total-span">TOTAL</span></p>
 
 
