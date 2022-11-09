@@ -13,8 +13,11 @@
 <h1> <%= nombre.capitalize%> </h1>
 
 <%# Boton para borrar el cliente%>
-<form method="post" action="/clientes/<%= nombre %>"> 
+<form method="post" action="/clientes"> 
     <input type="hidden" name="_method" value="delete">
+
+    <%# Codificamos la palabra para poder enivarla atravez del form%>
+    <input type="hidden" name="nombre" value=<%= nombre.gsub(" ", "%20") %>>
     <button type="submit">Borrar Cliente</button>
 </form>
 
@@ -28,7 +31,16 @@
   <% else %>
     <div class="compra">
   <% end %>
-    <%= t[:monto]%><span class="div-span"><%= t[:fecha].strftime('%d-%b-%y') %></span></div>
+    <%= t[:monto]%><span class="div-span"><%= t[:fecha].strftime('%d-%b-%y') %></span>
+    
+    <%# Boton para BORRAR una TRANSACCION de un CLIENTE%>
+    <form method="post" action="/clientes/<%= nombre %>"> 
+      <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="id" value=<%= t[:id]%>>
+      <button type="submit">Borrar Transaccion</button>
+    </form>
+
+    </div>
 <% end %>
 
 <%# Linea%>

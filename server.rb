@@ -25,13 +25,14 @@ post '/clientes' do
 end
 
 # Ruta para BORRAR el cliente
-delete '/clientes/:name' do |n|
-  # Hay que borrar primero los childs luego
-  # borramos al padre
-  DB[:transacciones].where(nombre_cliente: n).delete
-  DB[:clientes].where(nombre: n).delete
+delete '/clientes' do
+  # Hay que borrar primero los childs luego borramos al padre
+  # Se decodifica para poder extraer lso valores y poder borrar el nombre correcto
+  DB[:transacciones].where(nombre_cliente: params[:nombre].gsub("%20", " ")).delete
+  DB[:clientes].where(nombre: params[:nombre].gsub("%20", " ")).delete
   redirect '/'
 end
+
 
 # Ruta para mostrar UN cliente
 get '/clientes/:nombre' do |n|
@@ -47,4 +48,10 @@ post '/clientes/:nombre' do |n|
       DB[:transacciones].insert(monto: params[:monto] ,fecha: params[:fecha], nombre_cliente: n)
     end
       redirect '/clientes/' + n
+end
+
+# Ruta para BORRAR una TRANSACCION de un CLIENTE
+delete '/clientes/:nombre' do |n|
+  DB[:transacciones].where(id: params[:id]).delete
+  redirect '/clientes/' + n
 end
