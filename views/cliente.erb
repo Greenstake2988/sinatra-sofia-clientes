@@ -19,11 +19,8 @@
 <% nombre_con_20 = nombre.gsub(" ", "%20")%>
 
 <%# Boton para borrar el cliente%>
-<form method="post" action="/clientes"> 
+<form method="post" action=/clientes/<%= nombre_con_20 %>> 
     <input type="hidden" name="_method" value="delete">
-
-    <%# Codificamos la palabra para poder enivarla atravez del form%>
-    <input type="hidden" name="nombre" value=<%= nombre_con_20 %>>
     <button type="submit">Borrar Cliente</button>
 </form>
 
@@ -40,7 +37,7 @@
     <%= t[:monto]%><span class="div-span"><%= t[:fecha].strftime('%d-%b-%y') %></span>
     
     <%# Boton para BORRAR una TRANSACCION de un CLIENTE %>
-    <form method="post" action="/clientes/<%= nombre_con_20 %>"> 
+    <form method="post" action=/clientes/<%= nombre_con_20 + "/" + t[:id].to_s %>"> 
       
       <input type="hidden" name="_method" value="delete">
       <input type="hidden" name="id" value=<%= t[:id] %>>

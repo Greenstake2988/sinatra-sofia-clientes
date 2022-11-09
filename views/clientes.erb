@@ -17,9 +17,9 @@
 
 <%# Mostramos todos los clientes %>
 <% clientes.each do |c| %>
+
   <%# Poniendole %20 al nombre para pasarlo por las paginas%>
-  <% nombre_con_20 = c[:nombre].gsub(" ", "%20") %>
-  <p><a href=/clientes/<%= nombre_con_20 %>><%= c[:nombre].capitalize %></a></p>
+  <p><a href=/clientes/<%= c[:nombre].gsub(" ", "%20") %>><%= c[:nombre].capitalize %></a></p>
 <% end %>
 
 <%# Linea%>

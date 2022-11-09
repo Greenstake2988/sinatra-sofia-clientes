@@ -18,26 +18,25 @@ end
 # Ruta para AGREGAR un cliente
 post '/clientes' do
   # todas las palabras en minusculas y le quitamos los espacios de atras ya adelante
-  nombre = params[:nombre].downcase.strip
+  n = params[:nombre].downcase.strip
   # checamos que el nombre n exista y que no este vacio
-  if not (DB[:clientes].include?(nombre: nombre) or nombre.empty?)
-    DB[:clientes].insert(nombre: nombre)
-    redirect '/clientes/' + nombre
+  if not (DB[:clientes].include?(nombre: n) or n.empty?)
+    DB[:clientes].insert(nombre: n)
+    redirect '/clientes/' + n
   end
     redirect '/' 
 end
 
-# Ruta para BORRAR el cliente
-delete '/clientes' do
+
+# Ruta para BORRAR un cliente
+delete '/clientes/:nombre' do |n|
   # Hay que borrar primero los childs luego borramos al padre
-  # Se decodifica para poder extraer lso valores y poder borrar el nombre correcto
-  DB[:transacciones].where(nombre_cliente: params[:nombre].gsub("%20", " ")).delete
-  DB[:clientes].where(nombre: params[:nombre].gsub("%20", " ")).delete
+  DB[:transacciones].where(nombre_cliente: n).delete
+  DB[:clientes].where(nombre: n).delete
   redirect '/'
 end
 
-
-# Ruta para mostrar UN cliente
+# Ruta para MOSTRAR un cliente
 get '/clientes/:nombre' do |n|
   # Buscamos las transacciones que pertenecen al cliente
   t = DB[:transacciones].where(nombre_cliente: n).all
@@ -46,16 +45,15 @@ end
 
 # Ruta para agregar UNA transaccion por cliente
 post '/clientes/:nombre' do |n|
-  puts params[:nombre]
   # Evitando guardar mayusculas en la base de datos y nombres en blanco
-  if (DB[:clientes].include?(nombre: params[:nombre].downcase) or params[:nombre].empty?)
+  if (DB[:clientes].include?(nombre: n.downcase) or n.empty?)
     DB[:transacciones].insert(monto: params[:monto] ,fecha: params[:fecha], nombre_cliente: n)
   end
     redirect '/clientes/' + n
 end
 
 # Ruta para BORRAR una TRANSACCION de un CLIENTE
-delete '/clientes/:nombre' do |n|
-  DB[:transacciones].where(id: params[:id]).delete
+delete '/clientes/:nombre/:id' do |n, id|
+  DB[:transacciones].where(id: id.to_i).delete
   redirect '/clientes/' + n
 end
