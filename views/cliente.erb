@@ -27,6 +27,9 @@
 <%# Los encabezados  Monto y Fecha%>
 <div class="abono" style="color:black; font-size:large"><strong>Monto</strong><span class="div-span"><strong>Fecha</strong></span></div>
 
+<%# Ordenamos las fechas OJO cambiamos el objeto %>
+<% transacciones.sort_by! {|hsh| hsh[:fecha] } %>
+
 <%# Mostramos todas las transacciones%>
 <% transacciones.each do |t| %>
   <% if t[:monto] > 0 %>
