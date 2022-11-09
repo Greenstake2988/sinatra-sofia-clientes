@@ -10,7 +10,7 @@
 <body>
   
 <%# Titulo%>
-<h1> Clientes </h1>
+<h1> Clientes Saldo </h1>
 
 <%# Ordenamos los nombres OJO cambiamos el objeto %>
 <% clientes.sort_by! {|hsh| hsh[:nombre] } %>
@@ -34,8 +34,8 @@
       </div>
 </form>
 
-<%# Boton para regresar a los clientes_saldo%>
-<a href="/clientes_saldo"> <button>Clientes saldo</button>
+<%# Boton para regresar a los clientes%>
+<a href="/clientes"> <button>Clientes</button>
 
 </body>
 </html>

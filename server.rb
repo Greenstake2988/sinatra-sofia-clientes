@@ -16,11 +16,11 @@ get '/clientes' do
 end
 
 # Ruta para mostrar TODOS los clientes DEUDORES
-get '/clientes_deudores' do
+get '/clientes_saldo' do
   # Cambiar cuando se pueda filtramos todos los que tienen
   # en la suma de sus transacciones mayores a 0
   c = DB["SELECT clientes.nombre FROM transacciones INNER JOIN clientes ON clientes.nombre=transacciones.nombre_cliente GROUP BY clientes.nombre HAVING SUM(monto)>0"].all
-  erb :clientes, :locals => {:clientes => c}
+  erb :clientes_saldo, :locals => {:clientes => c}
 end
 
 
