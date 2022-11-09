@@ -4,26 +4,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cartera</title>
 
 </head>
 <body>
   
-<h1> Clientes </h1>
-
-<%# Conexion a base de datos cartera de los clientes%>
-<% load "cartera.rb"%>
-
-<%# Sacamos el record de la base de datos%>
-<%# y lo transformamos a una lista de hashes para poder usarlo%>
-<% clientes_record = DB[:clientes]
-   clientes = clientes_record.all
-%>
-
-
-<% clientes.each do |c|%>
-  <p><a href=/clientes/<%=c[:nombre].to_s%>><%= c[:nombre].capitalize %> </a></p>
-<% end %>
-
 </body>
 </html>
