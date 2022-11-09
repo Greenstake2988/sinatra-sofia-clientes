@@ -12,20 +12,27 @@
 <h1> <%= nombre.capitalize%> </h1>
 
 <%# Conexion a base de datos por las deudas de los cleintes%>
-<% deudas = [10, 20, 30 ,100, -10000]%>
+<% transacciones = [  {:monto => 10, :fecha => "10-10-22"},                                                                  
+                      {:monto => 20, :fecha => "12-10-22"},                                                                  
+                      {:monto => 30, :fecha => "14-10-22"},
+                      {:monto => 100, :fecha => "20-10-22"},
+                      {:monto => -1000, :fecha => "30-10-22"},
+                   ]  
+%>
+
 
 <div class="abono" style="color:black; font-size:large"><strong>Monto</strong><span class="div-span"><strong>Fecha</strong></span></div>
 
-<% deudas.each do |d|%>
-  <% if d > 0 %>
-    <div class="abono"><%=d%><span class="div-span">Fecha</span></div>
+<% transacciones.each do |t|%>
+  <% if t[:monto] > 0 %>
+    <div class="abono"><%=t[:monto]%><span class="div-span"><%=t[:fecha]%></span></div>
   <% else %>
-    <div class="compra"><%=d%><span class="div-span">Fecha</span></div>
+    <div class="compra"><%=t[:monto]%><span class="div-span"><%=t[:fecha]%></span></div>
   <% end %>
 <% end %>
 
 <hr>
-<p class="total"><%=deudas.sum%> <span class="total-span">TOTAL</span></p>
+<p class="total"><%=transacciones.sum {|t| t[:monto]}%> <span class="total-span">TOTAL</span></p>
 
 </body>
 </html>
