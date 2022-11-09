@@ -17,7 +17,7 @@ end
 
 # Ruta para AGREGAR un cliente
 post '/clientes' do
-  # Evitando guardar mayusculas en la base de datos
+  # Evitando guardar mayusculas en la base de datos y nombres en blanco
   if not (DB[:clientes].include?(nombre: params[:nombre].downcase) or params[:nombre].empty?)
     DB[:clientes].insert(nombre: params[:nombre].downcase)
   end
