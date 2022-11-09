@@ -21,11 +21,16 @@ get '/clientes/:nombre' do |n|
 end
 
 post '/clientes' do
-  DB[:clientes].insert(nombre: params[:nombre])
-  redirect '/'
+  unless DB[:clientes].include?(nombre: params[:nombre])
+    DB[:clientes].insert(nombre: params[:nombre])
+  end
+    redirect '/'
 end
 
 delete '/clientes/:name' do |n|
+  #Hay que borrar primero los childs luego
+  #borramos al padre
+  DB[:transacciones].where(nombre_cliente: n).delete
   DB[:clientes].where(nombre: n).delete
   redirect '/'
 end
