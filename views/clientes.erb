@@ -17,9 +17,9 @@
 
 <%# Mostramos todos los clientes %>
 <% clientes.each do |c| %>
-  <%# Agregando %20 en los  nombre con espacios %>
-  <% nombre_con_espacios = c[:nombre].gsub(" ", "%20") %>
-  <p><a href=/clientes/<%= nombre_con_espacios %>><%= c[:nombre].capitalize %></a></p>
+  <%# Poniendole %20 al nombre para pasarlo por las paginas%>
+  <% nombre_con_20 = c[:nombre].gsub(" ", "%20") %>
+  <p><a href=/clientes/<%= nombre_con_20 %>><%= c[:nombre].capitalize %></a></p>
 <% end %>
 
 <%# Linea%>

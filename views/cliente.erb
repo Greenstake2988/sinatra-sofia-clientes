@@ -12,12 +12,15 @@
 <%# Titulo %>
 <h1> <%= nombre.capitalize%> </h1>
 
+<%# Poniendole %20 al nombre para pasarlo por las paginas%>
+<% nombre_con_20 = nombre.gsub(" ", "%20")%>
+
 <%# Boton para borrar el cliente%>
 <form method="post" action="/clientes"> 
     <input type="hidden" name="_method" value="delete">
 
     <%# Codificamos la palabra para poder enivarla atravez del form%>
-    <input type="hidden" name="nombre" value=<%= nombre.gsub(" ", "%20") %>>
+    <input type="hidden" name="nombre" value=<%= nombre_con_20 %>>
     <button type="submit">Borrar Cliente</button>
 </form>
 
@@ -33,13 +36,14 @@
   <% end %>
     <%= t[:monto]%><span class="div-span"><%= t[:fecha].strftime('%d-%b-%y') %></span>
     
-    <%# Boton para BORRAR una TRANSACCION de un CLIENTE%>
-    <form method="post" action="/clientes/<%= nombre %>"> 
+    <%# Boton para BORRAR una TRANSACCION de un CLIENTE %>
+    <form method="post" action="/clientes/<%= nombre_con_20 %>"> 
+      
       <input type="hidden" name="_method" value="delete">
-      <input type="hidden" name="id" value=<%= t[:id]%>>
+      <input type="hidden" name="id" value=<%= t[:id] %>>
+      
       <button type="submit">Borrar Transaccion</button>
     </form>
-
     </div>
 <% end %>
 
@@ -49,8 +53,8 @@
 <%# TOTAL %>
 <p class="total"><%= transacciones.sum {|t| t[:monto]} %> <span class="total-span">TOTAL</span></p>
 
-<%# Forma con boton para agregar una transaccion al cliente%>
-<form method="post" action=/clientes/<%= nombre %>>
+<%# Boton para AGREGAR una TRANSACCION al CLIENTE %>
+<form method="post" action=/clientes/<%= nombre_con_20 %>>
       <label for="monto">Monto: </label>
       <input type="number" name="monto" required>
 
