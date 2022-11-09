@@ -12,6 +12,9 @@
 <%# Titulo %>
 <h1> <%= nombre.capitalize%> </h1>
 
+<%# Ordenamos las fechas OJO cambiamos el objeto %>
+<% transacciones.sort_by! {|hsh| hsh[:fecha] } %>
+
 <%# Poniendole %20 al nombre para pasarlo por las paginas%>
 <% nombre_con_20 = nombre.gsub(" ", "%20")%>
 
@@ -26,9 +29,6 @@
 
 <%# Los encabezados  Monto y Fecha%>
 <div class="abono" style="color:black; font-size:large"><strong>Monto</strong><span class="div-span"><strong>Fecha</strong></span></div>
-
-<%# Ordenamos las fechas OJO cambiamos el objeto %>
-<% transacciones.sort_by! {|hsh| hsh[:fecha] } %>
 
 <%# Mostramos todas las transacciones%>
 <% transacciones.each do |t| %>

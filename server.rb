@@ -20,8 +20,9 @@ post '/clientes' do
   # Evitando guardar mayusculas en la base de datos y nombres en blanco
   if not (DB[:clientes].include?(nombre: params[:nombre].downcase) or params[:nombre].empty?)
     DB[:clientes].insert(nombre: params[:nombre].downcase)
+    redirect '/clientes/' + params[:nombre].downcase.to_s
   end
-    redirect '/'
+    redirect '/' 
 end
 
 # Ruta para BORRAR el cliente
