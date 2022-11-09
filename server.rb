@@ -27,6 +27,12 @@ post '/clientes' do
     redirect '/' 
 end
 
+# Ruta para MOSTRAR un cliente
+get '/clientes/:nombre' do |n|
+  # Buscamos las transacciones que pertenecen al cliente
+  t = DB[:transacciones].where(nombre_cliente: n).all
+  erb :cliente, :locals => {:nombre => n, :transacciones => t}
+end
 
 # Ruta para BORRAR un cliente
 delete '/clientes/:nombre' do |n|
@@ -36,14 +42,8 @@ delete '/clientes/:nombre' do |n|
   redirect '/'
 end
 
-# Ruta para MOSTRAR un cliente
-get '/clientes/:nombre' do |n|
-  # Buscamos las transacciones que pertenecen al cliente
-  t = DB[:transacciones].where(nombre_cliente: n).all
-  erb :cliente, :locals => {:nombre => n, :transacciones => t}
-end
 
-# Ruta para agregar UNA transaccion por cliente
+# Ruta para agregar UNA transaccion al cliente
 post '/clientes/:nombre' do |n|
   # Evitando guardar mayusculas en la base de datos y nombres en blanco
   if (DB[:clientes].include?(nombre: n.downcase) or n.empty?)

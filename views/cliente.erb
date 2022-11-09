@@ -55,13 +55,15 @@
 
 <%# Boton para AGREGAR una TRANSACCION al CLIENTE %>
 <form method="post" action=/clientes/<%= nombre_con_20 %>>
-      <label for="monto">Monto: </label>
-      <input type="number" name="monto" required>
+  <label for="monto">Monto: </label>
+  <input type="number" name="monto" required>
 
-      <label for="fecha">Fecha: </label>
-      <input type="date" name="fecha" required>
+  <div>
+    <label for="fecha">Fecha: </label>
+    <input type="date" name="fecha" required>
+  </div>
 
-      <input type="submit" value="Agregar Transaccion">
+  <input type="submit" value="Agregar Transaccion">
 </form>
 
 <%# Boton para regresar a los clientes%>
