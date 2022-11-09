@@ -17,10 +17,12 @@ end
 
 # Ruta para AGREGAR un cliente
 post '/clientes' do
-  # Evitando guardar mayusculas en la base de datos y nombres en blanco
-  if not (DB[:clientes].include?(nombre: params[:nombre].downcase) or params[:nombre].empty?)
-    DB[:clientes].insert(nombre: params[:nombre].downcase)
-    redirect '/clientes/' + params[:nombre].downcase.to_s
+  # todas las palabras en minusculas y le quitamos los espacios de atras ya adelante
+  nombre = params[:nombre].downcase.strip
+  # checamos que el nombre n exista y que no este vacio
+  if not (DB[:clientes].include?(nombre: nombre) or nombre.empty?)
+    DB[:clientes].insert(nombre: nombre)
+    redirect '/clientes/' + nombre
   end
     redirect '/' 
 end
