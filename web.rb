@@ -21,8 +21,9 @@ get '/clientes/:nombre' do |n|
 end
 
 post '/clientes' do
-  unless DB[:clientes].include?(nombre: params[:nombre])
-    DB[:clientes].insert(nombre: params[:nombre])
+  # Evitando guardar mayusculas en la base de datos
+  unless DB[:clientes].include?(nombre: params[:nombre].downcase)
+    DB[:clientes].insert(nombre: params[:nombre].downcase)
   end
     redirect '/'
 end
