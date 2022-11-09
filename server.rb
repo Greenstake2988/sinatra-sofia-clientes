@@ -15,6 +15,15 @@ get '/clientes' do
   erb :clientes, :locals => {:clientes => c}
 end
 
+# Ruta para mostrar TODOS los clientes DEUDORES
+get '/clientes_deudores' do
+  # Cambiar cuando se pueda filtramos todos los que tienen
+  # en la suma de sus transacciones mayores a 0
+  c = DB["SELECT clientes.nombre FROM transacciones INNER JOIN clientes ON clientes.nombre=transacciones.nombre_cliente GROUP BY clientes.nombre HAVING SUM(monto)>0"].all
+  erb :clientes, :locals => {:clientes => c}
+end
+
+
 # Ruta para AGREGAR un cliente
 post '/clientes' do
   # todas las palabras en minusculas y le quitamos los espacios de atras ya adelante
