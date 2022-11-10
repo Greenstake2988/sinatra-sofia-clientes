@@ -9,9 +9,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cartera</title>
   <link href="/style.css" rel="stylesheet" type="text/css" />
-
 </head>
 <body>
+
+<%# Titulo %>
 <h1> <%= nombre.capitalize%> </h1>
 
 <%# Sacamos el record de la base de datos%>
@@ -20,19 +21,22 @@
    transacciones = transacciones.all
 %>
 
-
-
 <div class="abono" style="color:black; font-size:large"><strong>Monto</strong><span class="div-span"><strong>Fecha</strong></span></div>
 
+<%# iteramos la lista para desplegar los datos%>
 <% transacciones.each do |t|%>
   <% if t[:monto] > 0 %>
-    <div class="abono"><%=t[:monto]%><span class="div-span"><%=t[:fecha]%></span></div>
+    <div class="abono">
   <% else %>
-    <div class="compra"><%=t[:monto]%><span class="div-span"><%=t[:fecha]%></span></div>
+    <div class="compra">
   <% end %>
+    <%=t[:monto]%><span class="div-span"><%=t[:fecha].strftime('%d-%b-%y')%></span></div>
 <% end %>
 
+<%# Linea%>
 <hr>
+
+<%# el total %>
 <p class="total"><%=transacciones.sum {|t| t[:monto]}%> <span class="total-span">TOTAL</span></p>
 
 
