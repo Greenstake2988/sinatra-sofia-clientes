@@ -1,3 +1,6 @@
+<%# Conexion a base de datos cartera de los clientes%>
+<% load "cartera.rb"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,14 +14,12 @@
 <body>
 <h1> <%= nombre.capitalize%> </h1>
 
-<%# Conexion a base de datos por las deudas de los cleintes%>
-<% transacciones = [  {:monto => 10, :fecha => "10-10-22"},                                                                  
-                      {:monto => 20, :fecha => "12-10-22"},                                                                  
-                      {:monto => 30, :fecha => "14-10-22"},
-                      {:monto => 100, :fecha => "20-10-22"},
-                      {:monto => -1000, :fecha => "30-10-22"},
-                   ]  
+<%# Sacamos el record de la base de datos%>
+<%# y lo transformamos a una lista de hashes para poder usarlo%>
+<% transacciones = DB[:transacciones]
+   transacciones = transacciones.all
 %>
+
 
 
 <div class="abono" style="color:black; font-size:large"><strong>Monto</strong><span class="div-span"><strong>Fecha</strong></span></div>
@@ -33,6 +34,7 @@
 
 <hr>
 <p class="total"><%=transacciones.sum {|t| t[:monto]}%> <span class="total-span">TOTAL</span></p>
+
 
 </body>
 </html>
