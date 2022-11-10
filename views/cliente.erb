@@ -17,27 +17,25 @@
 
 <%# Sacamos el record de la base de datos%>
 <%# y lo transformamos a una lista de hashes para poder usarlo%>
-<% transacciones_record = DB[:transacciones]
-   transacciones = transacciones_record.all
-%>
+<% transacciones = DB[:transacciones].where(nombre_cliente: nombre).all %>
 
 <div class="abono" style="color:black; font-size:large"><strong>Monto</strong><span class="div-span"><strong>Fecha</strong></span></div>
 
 <%# iteramos la lista para desplegar los datos%>
-<% transacciones.each do |t|%>
+<% transacciones.each do |t| %>
   <% if t[:monto] > 0 %>
     <div class="abono">
   <% else %>
     <div class="compra">
   <% end %>
-    <%=t[:monto]%><span class="div-span"><%=t[:fecha].strftime('%d-%b-%y')%></span></div>
+    <%= t[:monto]%><span class="div-span"><%= t[:fecha].strftime('%d-%b-%y') %></span></div>
 <% end %>
 
 <%# Linea%>
 <hr>
 
 <%# el total %>
-<p class="total"><%=transacciones.sum {|t| t[:monto]}%> <span class="total-span">TOTAL</span></p>
+<p class="total"><%= transacciones.sum {|t| t[:monto]} %> <span class="total-span">TOTAL</span></p>
 
 
 </body>
