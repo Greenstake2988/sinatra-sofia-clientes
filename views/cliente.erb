@@ -1,6 +1,3 @@
-<%# Conexion a base de datos cartera de los clientes%>
-<% load "cartera.rb"%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,10 +12,13 @@
 <%# Titulo %>
 <h1> <%= nombre.capitalize%> </h1>
 
+<%# Conexion a base de datos cartera de los clientes%>
+<% load "cartera.rb"%>
+
 <%# Sacamos el record de la base de datos%>
 <%# y lo transformamos a una lista de hashes para poder usarlo%>
-<% transacciones = DB[:transacciones]
-   transacciones = transacciones.all
+<% transacciones_record = DB[:transacciones]
+   transacciones = transacciones_record.all
 %>
 
 <div class="abono" style="color:black; font-size:large"><strong>Monto</strong><span class="div-span"><strong>Fecha</strong></span></div>

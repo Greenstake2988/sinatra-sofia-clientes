@@ -11,11 +11,18 @@
   
 <h1> Clientes </h1>
 
-<%# Conexion a base de datos con los nombres de los clientes%>
-<% clientes = ["oscar", "daniel", "vazquez", "perez"]%>
+<%# Conexion a base de datos cartera de los clientes%>
+<% load "cartera.rb"%>
 
-<% clientes.each do |n|%>
-  <p><a href= <%=n.to_s%>><%= n.capitalize %> </a></p>
+<%# Sacamos el record de la base de datos%>
+<%# y lo transformamos a una lista de hashes para poder usarlo%>
+<% clientes_record = DB[:clientes]
+   clientes = clientes_record.all
+%>
+
+
+<% clientes.each do |c|%>
+  <p><a href= <%=c[:nombre].to_s%>><%= c[:nombre].capitalize %> </a></p>
 <% end %>
 
 </body>
