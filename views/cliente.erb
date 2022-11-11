@@ -12,13 +12,6 @@
 <%# Titulo %>
 <h1> <%= nombre.capitalize%> </h1>
 
-<%# Conexion a base de datos cartera de los clientes%>
-<% load "cartera.rb"%>
-
-<%# Sacamos el record de la base de datos%>
-<%# y lo transformamos a una lista de hashes para poder usarlo%>
-<% transacciones = DB[:transacciones].where(nombre_cliente: nombre).all %>
-
 <div class="abono" style="color:black; font-size:large"><strong>Monto</strong><span class="div-span"><strong>Fecha</strong></span></div>
 
 <%# iteramos la lista para desplegar los datos%>
