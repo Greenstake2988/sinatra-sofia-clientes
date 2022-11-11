@@ -20,7 +20,12 @@ get '/clientes/:nombre' do |n|
   erb :cliente, :locals => {:nombre => n, :transacciones => t}
 end
 
-post '/cliente' do |n|
-  erb :nuevo_cliente, :locals => {:nombre => n}
-  
+post '/cliente' do
+  DB[:clientes].insert(nombre: params[:nombre])
+  redirect '/'
+end
+
+delete '/clientes/:name' do |n|
+  DB[:clientes].where(nombre: n).delete
+  redirect '/'
 end

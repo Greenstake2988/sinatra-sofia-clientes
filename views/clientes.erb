@@ -11,13 +11,18 @@
   
 <h1> Clientes </h1>
 
-
-
 <% clientes.each do |c|%>
   <p><a href=/clientes/<%=c[:nombre].to_s%>><%= c[:nombre].capitalize %> </a></p>
 <% end %>
 
-<a href=/cliente>Hola</a>
+<%# Linea%>
+<hr>
+
+<form method="post" action="/cliente">
+      <label for="nombre">Nombre: </label>
+      <input type="text" name="nombre">
+      <input type="submit" value="Agregar Cliente">
+</form>
 
 </body>
 </html>

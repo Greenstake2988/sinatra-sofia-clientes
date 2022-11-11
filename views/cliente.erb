@@ -12,6 +12,16 @@
 <%# Titulo %>
 <h1> <%= nombre.capitalize%> </h1>
 
+<form method="post" action="/clientes/<%= nombre %>"> 
+    <input type="hidden" name="_method" value="delete">
+    <button type="submit">Borrar Cliente</button>
+</form>
+
+
+
+
+
+
 <div class="abono" style="color:black; font-size:large"><strong>Monto</strong><span class="div-span"><strong>Fecha</strong></span></div>
 
 <%# iteramos la lista para desplegar los datos%>
