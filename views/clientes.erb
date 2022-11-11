@@ -12,13 +12,18 @@
 <h1> Clientes </h1>
 
 <% clientes.each do |c|%>
-  <p><a href=/clientes/<%=c[:nombre].to_s%>><%= c[:nombre].capitalize %> </a></p>
+  
+  <%# Se tuvo que modificar el nombre y meterle
+      en los espacios '%20' de otro modo la pagina
+      no recibe los espacios %>
+  <% nombre_con_espacios = c[:nombre].gsub(" ", "%20")%>
+  <p><a href=/clientes/<%= nombre_con_espacios %>><%= c[:nombre].capitalize %> </a></p>
 <% end %>
 
 <%# Linea%>
 <hr>
 
-<form method="post" action="/cliente">
+<form method="post" action="/clientes">
       <label for="nombre">Nombre: </label>
       <input type="text" name="nombre">
       <input type="submit" value="Agregar Cliente">

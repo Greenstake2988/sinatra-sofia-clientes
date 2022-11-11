@@ -20,7 +20,7 @@ get '/clientes/:nombre' do |n|
   erb :cliente, :locals => {:nombre => n, :transacciones => t}
 end
 
-post '/cliente' do
+post '/clientes' do
   DB[:clientes].insert(nombre: params[:nombre])
   redirect '/'
 end
