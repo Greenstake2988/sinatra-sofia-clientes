@@ -40,10 +40,10 @@
 <%# Forma con boton para agregar una transaccion al cliente%>
 <form method="post" action=/clientes/<%= nombre %>>
       <label for="monto">Monto: </label>
-      <input type="text" name="monto">
+      <input type="number" name="monto" required>
 
       <label for="fecha">Fecha: </label>
-      <input type="text" name="fecha">
+      <input type="date" name="fecha" required>
 
       <input type="submit" value="Agregar Transaccion">
 </form>
