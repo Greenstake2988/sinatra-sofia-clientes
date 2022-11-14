@@ -37,6 +37,16 @@
 <%# TOTAL %>
 <p class="total"><%= transacciones.sum {|t| t[:monto]} %> <span class="total-span">TOTAL</span></p>
 
+<%# Forma con boton para agregar una transaccion al cliente%>
+<form method="post" action=/clientes/<%= nombre %>>
+      <label for="monto">Monto: </label>
+      <input type="text" name="monto">
+
+      <label for="fecha">Fecha: </label>
+      <input type="text" name="fecha">
+
+      <input type="submit" value="Agregar Transaccion">
+</form>
 
 </body>
 </html>

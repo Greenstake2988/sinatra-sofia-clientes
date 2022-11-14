@@ -39,3 +39,12 @@ get '/clientes/:nombre' do |n|
   t = DB[:transacciones].where(nombre_cliente: n).all
   erb :cliente, :locals => {:nombre => n, :transacciones => t}
 end
+
+# Ruta para agregar UNA transaccion por cliente
+post '/clientes/:nombre' do |n|
+    # Evitando guardar mayusculas en la base de datos y nombres en blanco
+    if (DB[:clientes].include?(nombre: params[:nombre].downcase) or params[:nombre].empty?)
+      DB[:transacciones].insert(monto: params[:monto] ,fecha: params[:fecha], nombre_cliente: n)
+    end
+      redirect '/clientes/' + n
+end
