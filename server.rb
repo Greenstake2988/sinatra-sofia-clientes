@@ -11,7 +11,8 @@ end
 
 # Ruta para mostrar TODOS los clientes
 get '/clientes' do
-  c = DB[:clientes].all
+  #c = DB[:clientes].all
+  c = Cliente.all.as_json.map(&:symbolize_keys)
   erb :clientes, :locals => {:clientes => c}
 end
 
