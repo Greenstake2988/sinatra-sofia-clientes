@@ -8,4 +8,4 @@ require './app'
 require './models/cliente'
 require './models/transaccione'
 
-run Sinatra::Application
+run Cartera
