@@ -6,4 +6,5 @@ gem 'sequel'
 gem 'sqlite3'
 gem 'puma'
 gem 'activerecord'
-gem "sinatra-activerecord"
+gem 'sinatra-activerecord'
+gem 'rake'
