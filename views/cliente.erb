@@ -13,7 +13,7 @@
 <h1> <%= nombre.capitalize%> </h1>
 
 <%# Ordenamos las fechas OJO cambiamos el objeto %>
-<% transacciones.sort_by! {|hsh| hsh[:fecha] } %>
+<%# transacciones.sort_by! {|hsh| hsh[:fecha] } %>
 
 <%# Poniendole %20 al nombre para pasarlo por las paginas%>
 <% nombre_con_20 = nombre.gsub(" ", "%20")%>
@@ -28,16 +28,16 @@
 <div class="abono" style="color:black; font-size:large"><strong>Monto</strong><span class="div-span"><strong>Fecha</strong></span></div>
 
 <%# Mostramos todas las transacciones%>
-<% transacciones.each do |t| %>
-  <% if t[:monto] > 0 %>
+<% @transacciones.each do |t| %>
+  <% if t.monto > 0 %>
     <div class="abono">
   <% else %>
     <div class="compra">
   <% end %>
-    <%= t[:monto]%><span class="div-span"><%= t[:fecha].strftime('%d-%b-%y') %></span>
+    <%= t.monto%><span class="div-span"><%= t.fecha.strftime('%d-%b-%y') %></span>
     
     <%# Boton para BORRAR una TRANSACCION de un CLIENTE %>
-    <form method="post" action=/clientes/<%= nombre_con_20 + "/" + t[:id].to_s %>"> 
+    <form method="post" action=/clientes/<%= nombre_con_20 + "/" + t.id.to_s %>>
       
       <input type="hidden" name="_method" value="delete">
       <input type="hidden" name="id" value=<%= t[:id] %>>
@@ -51,7 +51,7 @@
 <hr>
 
 <%# TOTAL %>
-<p class="total"><%= transacciones.sum {|t| t[:monto]} %> <span class="total-span">TOTAL</span></p>
+<p class="total"><%# transacciones.sum {|t| t[:monto]} %><%= @transacciones.sum(:monto) %><span class="total-span">TOTAL</span></p>
 
 <%# Boton para AGREGAR una TRANSACCION al CLIENTE %>
 <form method="post" action=/clientes/<%= nombre_con_20 %>>
