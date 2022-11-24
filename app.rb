@@ -1,4 +1,7 @@
  class Cartera < Sinatra::Base 
+  
+  set :method_override, true
+
   # Ruta raiz
   get '/' do
     redirect '/clientes'
