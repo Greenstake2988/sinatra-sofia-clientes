@@ -67,4 +67,9 @@
     Transaccione.find(id.to_s).destroy
     redirect '/clientes/' + n
   end
+
+  get '/paypal' do
+    erb :paypal
+  end
+
 end
