@@ -1,9 +1,0 @@
-  development:
-    #adapter: sqlite3
-    #database: cartera_development
-    adapter: postgresql
-    host: localhost                          # Vm Ip   
-    port: 5432                            # Vm Port  
-    database: postgres            # Database Name  
-    username: postgres                   # User Name  
-    password:   
