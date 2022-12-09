@@ -18,6 +18,7 @@ GEM
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
     nio4r (2.5.8)
+    pg (1.4.5)
     puma (6.0.0)
       nio4r (~> 2.0)
     rack (2.2.4)
@@ -46,6 +47,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  pg
   puma
   rake
   sequel
