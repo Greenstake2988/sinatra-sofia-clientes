@@ -1,17 +1,9 @@
 development:
-  #adapter: sqlite3
-  #database: cartera_development
   adapter: postgresql
   host: db-postgresql-nyc1-34217-do-user-12915544-0.b.db.ondigitalocean.com                           # Vm Ip   
   port: 25060                            # Vm Port  
   database: defaultdb              # Database Name  
   username: doadmin                   # User Name  
-  password: AVNS_o8G48EtX7qXZu6RRI86  
+  password: AVNS_o8G48EtX7qXZu6RRI86 
 
-production:
-  adapter: postgresql
-  host: db-postgresql-nyc1-34217-do-user-12915544-0.b.db.ondigitalocean.com                           # Vm Ip   
-  port: 25060                            # Vm Port  
-  database: defaultdb              # Database Name  
-  username: doadmin                   # User Name  
-  password: AVNS_o8G48EtX7qXZu6RRI86  
+ 

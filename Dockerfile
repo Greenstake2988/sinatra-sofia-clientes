@@ -4,7 +4,7 @@ FROM ruby:3.1.2
 WORKDIR /sinatra
 COPY . /sinatra
 RUN bundle install
-RUN rake db:create
+#RUN rake db:create
 RUN rake db:migrate
 
 EXPOSE 4567
