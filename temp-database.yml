@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  port: 5432                            # Vm Port  
+  database: root              # Database Name  
+  username: root                  # User Name  
+
+ 
